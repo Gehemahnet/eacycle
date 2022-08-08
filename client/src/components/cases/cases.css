@@ -1,0 +1,40 @@
+.cases .wrapper {
+  flex-direction: column;
+}
+.cases__title {
+  margin-bottom: 30px;
+}
+.cases__table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px;
+  border: #f5f2f1 1px solid;
+  border-radius: 20px;
+}
+.cases__table-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #f5f2f1;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.cases__table-item:last-child {
+  margin-bottom: 0;
+}
+.cases__item-cell {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+}
+.cases__item-cell.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*# sourceMappingURL=cases.css.map */

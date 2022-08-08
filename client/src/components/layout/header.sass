@@ -1,0 +1,52 @@
+.header
+  background: gray
+  & .wrapper
+    padding: 20px 0
+    justify-content: space-between
+  &__logo
+  &__navigation
+
+  &__link
+    margin-right: 20px
+    font-size: 24px
+    &:last-child
+      margin-right: 0
+    &._active
+      color: white
+  &__user
+
+    &-avatar
+
+    &-drop
+
+    &-action
+
+    &-profile
+      position: relative
+      &-main
+        display: flex
+        align-items: center
+      &-additional
+        position: absolute
+        top: 140%
+        left: -55px
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        min-width: 150px
+        padding: 20px
+        background: white
+        border-radius: 8px
+        &:before
+          content: ""
+          position: absolute
+          top: -10px
+          left: calc(50% - 10px)
+          background: white
+          width: 20px
+          height: 20px
+          transform: rotate(45deg)
+      &-link
+        margin-bottom: 16px
+
+
