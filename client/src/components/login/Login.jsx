@@ -23,6 +23,7 @@ const Login = ({className, chooseRegistration, toggleAuth}) => {
         try {
             const data = await request("/api/auth/sign_in", "POST", {...form})
             auth.login(data.token, data.clientId)
+            console.log(data)
             dispatch(setTokenAction({token: data.token, clientId: data.clientId}))
         } catch (e) {
             console.log(e)

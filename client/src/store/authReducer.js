@@ -1,9 +1,9 @@
 const defaultState = {
-    token: JSON.parse(localStorage.getItem("token")) || null,
-    clientId: JSON.parse(localStorage.getItem("clientId")) || null,
+    token:null,
+    clientId:null,
     login: function noop() {},
     logout: function noop() {},
-    isAuthenticated: Boolean(JSON.parse(localStorage.getItem("token")))
+    isAuthenticated: false
 }
 
 export const authReducer = (state = defaultState, action) => {

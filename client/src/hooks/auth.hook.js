@@ -1,25 +1,29 @@
-import {useCallback, useEffect} from "react";
-import {useSelector} from "react-redux";
+import {useCallback, useEffect, useState} from "react";
 
 export const useAuth = () => {
-    const token = useSelector(state => state.isAuth.token)
-    const clientId = useSelector(state => state.isAuth.clientId)
+
+    const [token, setToken] = useState(null)
+    const [clientId, setClientId] = useState(null)
 
     const login = useCallback((jwtToken, clientId) => {
-        localStorage.setItem("token", JSON.stringify(jwtToken))
-        localStorage.setItem("clientId", JSON.stringify(clientId))
+        setToken(jwtToken)
+        setClientId(clientId)
+        localStorage.setItem('userData', JSON.stringify({
+            clientId: clientId, token: jwtToken
+        }))
     }, [])
 
     const logout = useCallback(() => {
-        localStorage.removeItem("token")
-        localStorage.removeItem("clientId")
+        setToken(null)
+        setClientId(null)
+
+        localStorage.removeItem("userData")
     }, [])
 
     useEffect(() => {
-        const token = JSON.parse(localStorage.getItem("token"))
-        const clientId = JSON.parse(localStorage.getItem("clientId"))
-        if (token && clientId) {
-            login(token, clientId)
+        const data = JSON.parse(localStorage.getItem("userData"))
+        if (data && data.token) {
+            login(data.token, data.clientId)
         }
     }, [login])
     return {login, logout, token, clientId}
