@@ -5,11 +5,9 @@ import {useState} from "react";
 import {useHttp} from "../../hooks/http.hook";
 
 
-const Form = () => {
-    const id = useSelector(state => state.isAuth.clientId.id)
-    const [form, setForm] = useState(
-        {licenseNumber: "", ownerFullName: "", type: "",clientId: id, color: "", date: "", officer: "", description: ""}
-    )
+const Form = ({data}) => {
+    const isAuth = useSelector(state => state.isAuth.isAuthenticated)
+    const [form, setForm] = useState(data)
     const [message, setMessage] = useState(false)
     const {request} = useHttp()
 
@@ -25,10 +23,7 @@ const Form = () => {
     const formHandler = e => {
         setForm({...form, [e.target.name]: e.target.value})
     }
-
-    const isAuth = useSelector(state => state.isAuth.isAuthenticated)
-
-
+    
     const typesOfBicycles = [
         'Городской', 'Дорожный', 'Горный', 'Шоссейный', 'Гибридный', 'BMX', 'Электровелосипед'
     ]

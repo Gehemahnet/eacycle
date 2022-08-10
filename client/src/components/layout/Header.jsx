@@ -39,21 +39,34 @@ const Header = () => {
                     >
                         Домашняя
                     </NavLink>
-                    <NavLink to='/contact'
-                             className={({isActive}) => isActive ? "header__link _active" : "header__link"}
-                    >
-                        Связаться
-                    </NavLink>
-                    <NavLink to='/cases'
-                             className={({isActive}) => isActive ? "header__link _active" : "header__link"}
-                    >
-                        Случаи
-                    </NavLink>
-                    <NavLink to='/officers'
-                             className={({isActive}) => isActive ? "header__link _active" : "header__link"}
-                    >
-                        Сотрудники
-                    </NavLink>
+                    {
+                        isAuthenticated
+                            ?
+                            <>
+                                <NavLink to='/contact'
+                                         className={({isActive}) => isActive ? "header__link _active" : "header__link"}
+                                >
+                                    Связаться
+                                </NavLink>
+                                <NavLink to='/cases'
+                                         className={({isActive}) => isActive ? "header__link _active" : "header__link"}
+                                >
+                                    Случаи
+                                </NavLink>
+                                <NavLink to='/officers'
+                                         className={({isActive}) => isActive ? "header__link _active" : "header__link"}
+                                >
+                                    Сотрудники
+                                </NavLink>
+                            </>
+                            :
+                            <NavLink to='/public/contact'
+                                     className={({isActive}) => isActive ? "header__link _active" : "header__link"}
+                            >
+                                Связаться
+                            </NavLink>
+
+                    }
                 </nav>
                 {
                     isAuthenticated

@@ -1,8 +1,9 @@
 import "./contact.sass"
 import Form from "../form/Form"
+import {useSelector} from "react-redux"
 
 const Contact = () => {
-
+    const id = useSelector(state => state.isAuth.isAuthenticated)
     return (
         <div className="wrapper">
             <div className="contact">
@@ -14,7 +15,18 @@ const Contact = () => {
                     Если вы хотите сообщить о таком случае, заполните, пожалуйста, форму ниже.
                 </h2>
                 <Form
-                    // serverRequest={}
+                    data={
+                        {
+                            licenseNumber: "",
+                            ownerFullName: "",
+                            type: "",
+                            clientId: id,
+                            color: "",
+                            date: "",
+                            officer: "",
+                            description: ""
+                        }
+                    }
                 />
             </div>
         </div>

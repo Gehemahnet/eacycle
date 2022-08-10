@@ -1,10 +1,23 @@
-const defaultState = {
-    token:null,
-    clientId:null,
+let defaultState = {
+    token: null,
+    clientId: null,
     login: function noop() {},
     logout: function noop() {},
-    isAuthenticated: Boolean(localStorage.getItem('userData'))
+    isAuthenticated: false
 }
+function checkForAuth(){
+    if(localStorage.hasOwnProperty('userData')) {
+        return (
+            defaultState = {
+                ...defaultState,
+                token: JSON.parse(localStorage.getItem('userData')).token,
+                clientId: JSON.parse(localStorage.getItem('userData')).clientId,
+                isAuthenticated: true
+            }
+        )
+    }
+}
+checkForAuth()
 
 export const authReducer = (state = defaultState, action) => {
     switch (action.type) {
