@@ -4,6 +4,27 @@ const router = Router()
 
 
 //  /api/cases
+router.get('/', async (req, res) => {
+    try {
+        const reports = await Report.find()
+        res.json(reports)
+        console.log(reports)
+    } catch (e) {
+        console.log(e.message)
+        res.status(500).json({message: "Error"})
+    }
+})
+
+router.get('/:id', async (req, res) => {
+    try {
+        const report = await Report.findById(req.params.id)
+        res.json(report)
+    } catch (e) {
+        console.log(e.message)
+        res.status(500).json({message: "Error"})
+    }
+})
+
 router.post('/', async (req, res) => {
     try {
         const {licenseNumber, type, ownerFullName, clientId, color, date, officer, description} = req.body
@@ -18,25 +39,45 @@ router.post('/', async (req, res) => {
         res.status(500).json({message: "Something went wrong, try again"})
     }
 })
-router.get('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
-        const reports = await Report.find()
-        res.json(reports)
+        const {
+            status,
+            licenseNumber,
+            type,
+            ownerFullName,
+            color,
+            date,
+            officer,
+            description,
+            resolution
+        } = req.body
+        await Report.findByIdAndUpdate(req.params.id, {
+            status,
+            licenseNumber,
+            type,
+            ownerFullName,
+            color,
+            date,
+            updatedAt: Date.now(),
+            officer,
+            description,
+            resolution
+        })
+        res.json({message: "Сообщение обновлено"})
     } catch (e) {
-        console.log(e.message)
-        res.status(500).json({message:"Error"})
+        console.log(e)
+        res.status(500).json({message: "Something went wrong, try again"})
     }
 })
-router.get('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
-        const report = await Report.findById(req.params.id)
-        res.json(report)
+        await Report.findByIdAndDelete(req.params.id);
+        res.json({message: "Сообщение удалено"})
     } catch (e) {
-        console.log(e.message)
-        res.status(500).json({message:"Error"})
+        console.log(e)
+        res.status(500).json({message: "Something went wrong, try again"})
     }
 })
-// router.delete('/:id', async (req, res) => {
-//
-// })
+
 module.exports = router

@@ -1,6 +1,6 @@
 const {Schema, model} = require("mongoose")
 
-const workerSchema = new Schema({
+const userSchema = new Schema({
     email: {type: String, required: true, unique: true},
     firstName: {type: String},
     lastName: {type: String},
@@ -9,4 +9,4 @@ const workerSchema = new Schema({
     approved: {type: Boolean}
 })
 
-module.exports = model("Worker",workerSchema)
+module.exports = model("User",userSchema)

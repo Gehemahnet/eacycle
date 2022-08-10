@@ -26,7 +26,7 @@ const Login = ({className, chooseRegistration, toggleAuth}) => {
             console.log(data)
             dispatch(setTokenAction({token: data.token, clientId: data.clientId}))
         } catch (e) {
-            console.log(e)
+            alert(e)
         }
     }
     return (

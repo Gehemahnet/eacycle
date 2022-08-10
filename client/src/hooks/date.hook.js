@@ -22,7 +22,7 @@ export const useRefactor = () => {
             newSlice.push(item)
         })
         return newSlice
-    }, [])
+    })
     const refactoredObject = useCallback(obj => {
         Object.keys(obj).forEach(key => {
             key === "createdAt" && (
@@ -36,6 +36,6 @@ export const useRefactor = () => {
             )
         })
         return obj
-    }, [])
+    })
     return {refactoredArray, refactoredObject}
 }

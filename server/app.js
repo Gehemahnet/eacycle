@@ -4,7 +4,11 @@ const config = require("config")
 
 const app = express()
 app.use(express.json())
+
 app.use('/api/auth', require('./routes/auth'))
+app.use('/api/cases', require('./routes/cases'))
+app.use('/api/public/report', require('./routes/publicReport'))
+app.use('/api/officers', require('./routes/officers'))
 
 const PORT = config.get('port') || 5000
 

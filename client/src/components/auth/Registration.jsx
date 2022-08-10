@@ -13,8 +13,7 @@ const Registration = ({className, chooseLogin, toggleAuth}) => {
     }
     const register = async () => {
         try {
-            const data = await request("/api/auth/sign_up", "POST", {...form})
-            console.log(data)
+            await request("/api/auth/sign_up", "POST", {...form})
         } catch (e) {
             console.log(e)
         }

@@ -3,7 +3,7 @@ import Form from "../../components/form/Form"
 import {useSelector} from "react-redux"
 
 const Contact = () => {
-    const id = useSelector(state => state.isAuth.isAuthenticated)
+    const id = useSelector(state => state.isAuth.clientId)
     return (
         <div className="wrapper">
             <div className="contact">
@@ -16,16 +16,29 @@ const Contact = () => {
                 </h2>
                 <Form
                     data={
-                        {
-                            licenseNumber: "",
-                            ownerFullName: "",
-                            type: "",
-                            clientId: id,
-                            color: "",
-                            date: "",
-                            officer: "",
-                            description: ""
-                        }
+                        id !== null
+                            ?
+                            {
+                                licenseNumber: "",
+                                ownerFullName: "",
+                                type: "",
+                                clientId: id,
+                                color: "",
+                                date: "",
+                                officer: "",
+                                description: ""
+                            }
+                            :
+                            {
+                                licenseNumber: "",
+                                ownerFullName: "",
+                                type: "",
+                                color: "",
+                                date: "",
+                                officer: "",
+                                description: ""
+                            }
+
                     }
                 />
             </div>

@@ -3,10 +3,19 @@ const {check, validationResult} = require("express-validator")
 const jwt = require("jsonwebtoken")
 const config = require("config")
 const bcrypt = require("bcryptjs")
-const Worker = require("../models/Worker")
+const User = require("../models/User")
 const router = Router()
 
-
+// /api/auth/
+router.get('/', async (req, res) => {
+    try {
+        const token = req.header("Authorization").split(' ')[1]
+        const data = await jwt.verify(token, config.get("jswSecret"))
+        res.json(data)
+    } catch (e) {
+        console.log(e)
+    }
+})
 // /api/auth/sign_up
 router.post('/sign_up',
     [
@@ -23,26 +32,27 @@ router.post('/sign_up',
                 })
             }
 
-            const {email, firstName, lastName, password, clientId, approved} = req.body
-            const candidateEmail = await Worker.findOne({email})
-            const candidateId = await Worker.findOne({clientId})
+            const {email, firstName, lastName, password, clientId} = req.body
+            const candidateEmail = await User.findOne({email})
+            const candidateId = await User.findOne({clientId})
             if (candidateEmail || candidateId) {
                 return res.status(400).json({message: "Пользователь существует"})
             }
-            const cryptedPassword = await bcrypt.hash(password, 10)
-            const worker = new Worker({
+            const encryptedPassword = await bcrypt.hash(password, 10)
+            const firstUser = await User.find()
+            const user = new User({
                 email,
                 firstName,
                 lastName,
                 clientId,
-                password: cryptedPassword,
-                approved
+                password: encryptedPassword,
+                approved : !Boolean(firstUser.length)
             })
-            await worker.save()
-            res.status(201).json({message: "Пользователь создан"})
-
+            await user.save()
+            res.status(201).json({message: "Пользователь создан" + user})
         } catch (e) {
             res.status(500).json({message: 'Something went wrong, try again'})
+            console.log(e)
         }
     })
 // /api/auth/sign_in
@@ -60,7 +70,7 @@ router.post('/sign_in',
                 })
             }
             const {email, password} = req.body
-            const user = await Worker.findOne({email})
+            const user = await User.findOne({email})
             if (!user) {
                 return res.status(400).json({message: "Пользовательно не найден"})
             }

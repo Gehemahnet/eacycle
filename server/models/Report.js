@@ -1,11 +1,11 @@
 const {Schema, model} = require("mongoose")
 
 const reportSchema = new Schema({
-    status: {type: String, required: true, unique: true, default: "new"},
+    status: {type: String, required: true, default: "new"},
     licenseNumber: {type: String, required: true, unique: true},
     type: {type: String, required: true},
     ownerFullName: {type: String, required: true},
-    clientId: {type: String, required: true, unique: true},
+    clientId: {type: String, unique: true},
     createdAt: {type: Date, default: Date.now()},
     updatedAt: {type: Date, default: Date.now()},
     color: {type: String},

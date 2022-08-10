@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom"
-import {useSelector} from "react-redux"
 import {useHttp} from "../../hooks/http.hook"
 import {useEffect, useState} from "react"
 import {useRefactor} from "../../hooks/date.hook"
@@ -10,28 +9,26 @@ const Cases = () => {
     //Show loading until data is loaded
     const [loading, setLoading] = useState(true)
     //Get auth from store
-    const isAuth = useSelector(state => state.isAuth.isAuthenticated)
     const {request} = useHttp()
     const {refactoredArray} = useRefactor()
 
-    //Get data from the server
-    const getCases = async () => {
+
+    const sendDelete = async (data) => {
         try {
-            setLoading(true)
-            const data = await request('/api/cases', "GET")
-            return refactoredArray(data)
+            await request(`/api/cases/${data}`, "DELETE")
+            console.log("Успешно", data)
+            window.location = window.location
         } catch (e) {
             console.log(e)
         }
     }
-    //Delete case
-    // const deleteCase = async () => {
-    // }
-    //Prepare data for render
+
     useEffect(() => {
-        getCases()
-            .then(data => setTable(data))
+        request('/api/cases', "GET")
+            .then(data => refactoredArray(data))
+            .then(ready => setTable(ready))
             .then(() => setLoading(false))
+            .catch(error => console.log(error))
     }, [])
     return (
         <section className="cases">
@@ -88,7 +85,16 @@ const Cases = () => {
                                         >
                                             Подробноcти
                                         </Link>
-                                        {isAuth && <button className="cases__item-button">Удалить</button>}
+                                        <button
+                                            className="cases__item-button"
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                sendDelete(item._id)
+                                            }}
+                                        >
+                                            Удалить
+                                        </button>
+
                                     </div>
                                 </div>
                             )

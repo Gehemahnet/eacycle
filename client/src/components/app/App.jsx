@@ -15,12 +15,12 @@ const App = () => {
         <Routes>
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
-                <Route path='public/contact' element={<Contact/>}/>
+                <Route path='contact' element={<Contact/>}/>
                 {isAuth && routes}
                 <Route path='*' element={<Error/>}/>
             </Route>
         </Routes>
-    );
+    )
 }
 
-export default App;
+export default App

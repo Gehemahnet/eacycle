@@ -5,11 +5,16 @@ import {setTokenAction} from "../../store/authReducer"
 import Auth from "../auth/Auth"
 import Avatar from "../../images/icons/avatar.svg"
 import './header.sass'
+import {useEffect, useState} from "react";
+import {useHttp} from "../../hooks/http.hook";
 
 const Header = () => {
     //Redux actions
+    const [currentOfficer, setCurrentOfficer] = useState(null)
     const dispatch = useDispatch()
     //States
+    const clientId = useSelector(state => state.isAuth.clientId)
+    const token = useSelector(state => state.isAuth.token)
     const isAuthenticated = useSelector(state => state.isAuth.isAuthenticated)
     const userDropCalled = useSelector(state => state.userDrop.userDropCalled)
 
@@ -20,6 +25,7 @@ const Header = () => {
         dispatch({type: "toggleUserDrop"})
     }
     //Other functions
+    const {request} = useHttp()
     const auth = useAuth()
     const logout = () => {
         auth.logout()
@@ -27,6 +33,19 @@ const Header = () => {
         toggleAuthPopup()
         window.location.reload()
     }
+    //Check token
+
+    useEffect(() => {
+        isAuthenticated &&
+            fetch('/api/auth/', {
+                headers: {"Authorization" : `Bearer ${token}`}
+            })
+                .then(() => {
+                    request('/api/officers/')
+                        .then(data => data.find(user => user.clientId === clientId))
+                        .then(user => setCurrentOfficer(user))
+                })
+    }, [])
     return (
         <header className="header">
             <div className="wrapper">
@@ -74,9 +93,11 @@ const Header = () => {
                             </div>
                             <div className={userDropCalled ? "header__user-profile-additional" : "hidden"}
                                  onClick={event => event.stopPropagation()}>
-                                <Link to="/profile" className="header__user-profile-link">
+                                {currentOfficer &&
+                                    <Link to={`/profile/${currentOfficer._id}`} className="header__user-profile-link">
                                     Профиль
-                                </Link>
+                                    </Link>
+                                }
                                 <button
                                     className="header__user-button"
                                     onClick={logout}
