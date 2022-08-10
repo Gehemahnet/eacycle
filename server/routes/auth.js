@@ -75,7 +75,7 @@ router.post('/sign_in',
                 config.get("jswSecret"),
                 {expiresIn: "7d"}
             )
-            res.json({token})
+            res.json({token: token, clientId: user.clientId})
         } catch (e) {
             console.log(e)
             res.status(500).json({message: "Something went wrong, try again"})

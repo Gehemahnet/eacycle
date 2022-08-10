@@ -3,7 +3,7 @@ const defaultState = {
     clientId:null,
     login: function noop() {},
     logout: function noop() {},
-    isAuthenticated: false
+    isAuthenticated: Boolean(localStorage.getItem('userData'))
 }
 
 export const authReducer = (state = defaultState, action) => {
