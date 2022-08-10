@@ -3,7 +3,7 @@ import {useHttp} from "../../hooks/http.hook"
 import {useAuth} from "../../hooks/auth.hook"
 import AuthField from "../auth/Auth-field"
 import AuthButton from "../auth/Auth-button"
-import {authenticateAction, setTokenAction} from "../../store/authReducer"
+import {setTokenAction} from "../../store/authReducer"
 import {useDispatch} from "react-redux"
 
 
@@ -22,13 +22,11 @@ const Login = ({className, chooseRegistration, toggleAuth}) => {
     const login = async () => {
         try {
             const data = await request("/api/auth/sign_in", "POST", {...form})
-            auth.login(data.token)
-            dispatch(setTokenAction(data.token))
-            dispatch(authenticateAction(true))
+            auth.login(data.token, data.clientId)
+            dispatch(setTokenAction({token: data.token, clientId: data.clientId}))
         } catch (e) {
             console.log(e)
         }
-        toggleAuth()
     }
     return (
         <div className={className} onClick={toggleAuth}>
@@ -54,8 +52,11 @@ const Login = ({className, chooseRegistration, toggleAuth}) => {
                         text={"Регистрация"}
                     />
                     <AuthButton
-                        type={"button"}
-                        onClick={login}
+                        type={"submit"}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            login()
+                        }}
                         text={"Войти"}
                     />
                 </div>

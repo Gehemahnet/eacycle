@@ -3,11 +3,11 @@
     display: flex
     flex-direction: column
     max-width: 600px
-    border: 1px solid seagreen
-    background: bisque
+    background: #423438
+    color: #F5F2F1
     border-radius: 20px
     padding: 30px
-    margin: 0 auto
+    margin: 20px auto
   &-fields
     display: flex
     align-items: flex-end
@@ -31,9 +31,12 @@
     height: 32px
     padding: 8px
     border-radius: 8px
+    &::placeholder
+      color: #423438
   &-select
+    color: #423438
     width: 100%
-    background: white
+    background: #F5F2F1
     padding: 8px
     border-radius: 8px
   &-textarea
@@ -41,11 +44,13 @@
     padding: 8px
     min-height: 200px
     width: 100%
+    background: #F5F2F1
     resize: none
   &-submit
     cursor: pointer
     padding: 20px
     border-radius: 10px
-    background: white
+    color: #423438
+    background: #F5F2F1
     align-self: center
     margin-top: 20px

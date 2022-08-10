@@ -25,8 +25,8 @@ const Cases = () => {
         }
     }
     //Delete case
-    const deleteCase = async () => {
-    }
+    // const deleteCase = async () => {
+    // }
     //Prepare data for render
     useEffect(() => {
         getCases()

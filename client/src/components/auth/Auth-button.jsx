@@ -3,11 +3,7 @@ const AuthButton = ({onClick,type,text}) => {
         <button
             type={type}
             className="auth__submit"
-            onClick={(event)=>{
-                event.preventDefault()
-                onClick()
-
-            }}
+            onClick={onClick}
         >
             {text}
         </button>

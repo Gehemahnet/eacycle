@@ -1,23 +1,26 @@
 import {useCallback, useEffect} from "react";
 import {useSelector} from "react-redux";
 
-const storageName = 'userData'
-
 export const useAuth = () => {
     const token = useSelector(state => state.isAuth.token)
-    const login = useCallback((jwtToken) => {
-        localStorage.setItem(storageName, JSON.stringify({token: jwtToken}))
+    const clientId = useSelector(state => state.isAuth.clientId)
+
+    const login = useCallback((jwtToken, clientId) => {
+        localStorage.setItem("token", JSON.stringify(jwtToken))
+        localStorage.setItem("clientId", JSON.stringify(clientId))
     }, [])
 
     const logout = useCallback(() => {
-        localStorage.removeItem(storageName)
+        localStorage.removeItem("token")
+        localStorage.removeItem("clientId")
     }, [])
 
     useEffect(() => {
-        const data = JSON.parse(localStorage.getItem(storageName))
-        if (data && data.token) {
-            login(data.token)
+        const token = JSON.parse(localStorage.getItem("token"))
+        const clientId = JSON.parse(localStorage.getItem("clientId"))
+        if (token && clientId) {
+            login(token, clientId)
         }
     }, [login])
-    return {login, logout, token}
+    return {login, logout, token, clientId}
 }

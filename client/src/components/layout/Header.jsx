@@ -1,7 +1,7 @@
 import {NavLink, Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {useAuth} from "../../hooks/auth.hook"
-import {authenticateAction, setTokenAction} from "../../store/authReducer"
+import {setTokenAction} from "../../store/authReducer"
 import Auth from "../auth/Auth"
 import Avatar from "../../images/icons/avatar.svg"
 import './header.sass'
@@ -23,9 +23,9 @@ const Header = () => {
     const auth = useAuth()
     const logout = () => {
         auth.logout()
-        dispatch(setTokenAction(null))
-        dispatch(authenticateAction(false))
+        dispatch(setTokenAction({token: null, clientId: null}))
         toggleAuthPopup()
+        window.location.reload()
     }
     return (
         <header className="header">
@@ -43,6 +43,16 @@ const Header = () => {
                              className={({isActive}) => isActive ? "header__link _active" : "header__link"}
                     >
                         Связаться
+                    </NavLink>
+                    <NavLink to='/cases'
+                             className={({isActive}) => isActive ? "header__link _active" : "header__link"}
+                    >
+                        Случаи
+                    </NavLink>
+                    <NavLink to='/officers'
+                             className={({isActive}) => isActive ? "header__link _active" : "header__link"}
+                    >
+                        Сотрудники
                     </NavLink>
                 </nav>
                 {

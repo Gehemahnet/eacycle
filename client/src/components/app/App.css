@@ -1,42 +1,8 @@
-body {
-  font-family: "Nunito", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: black;
-}
-
-button {
-  font-size: inherit;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 * {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.hidden {
-  display: none;
+  border: none;
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=App.css.map */

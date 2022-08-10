@@ -1,7 +1,8 @@
-
-import Form from "../form/Form";
+import "./contact.sass"
+import Form from "../form/Form"
 
 const Contact = () => {
+
     return (
         <div className="wrapper">
             <div className="contact">
@@ -9,11 +10,12 @@ const Contact = () => {
                     Сообщить о краже
                 </h1>
                 <h2 className="contact__subtitle">
-                    К сожалению иногда происходят случаи кражи наших велосипедов. Если вы хотите сообщить о таком
-                    случае,
-                    заполните, пожалуйста, форму ниже.
+                    К сожалению, иногда происходят случаи кражи наших велосипедов.<br/>
+                    Если вы хотите сообщить о таком случае, заполните, пожалуйста, форму ниже.
                 </h2>
-                <Form/>
+                <Form
+                    // serverRequest={}
+                />
             </div>
         </div>
     )

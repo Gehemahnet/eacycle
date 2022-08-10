@@ -11,12 +11,11 @@ const Auth = ({toggleAuth}) => {
     const authPopupCalled = useSelector(state => state.authPopup.authPopupCalled)
     const typeOfAuth = useSelector(state => state.typePopup.typeOfAuth)
         //Actions
-    console.log(authPopupCalled)
     const chooseLogin = () => {
-        dispatch({type: "ChooseLogin"})
+        dispatch({type: "chooseLogin"})
     }
     const chooseRegistration = () => {
-        dispatch({type: "ChooseRegistration"})
+        dispatch({type: "chooseRegistration"})
     }
     return (
         <>

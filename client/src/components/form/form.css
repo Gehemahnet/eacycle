@@ -38,6 +38,9 @@
   padding: 8px;
   border-radius: 8px;
 }
+.contact-input::placeholder {
+  color: #423438;
+}
 .contact-select {
   width: 100%;
   background: white;
