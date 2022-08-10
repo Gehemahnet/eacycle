@@ -1,8 +1,8 @@
 import {useState} from "react"
 import {useHttp} from "../../hooks/http.hook"
 import {useAuth} from "../../hooks/auth.hook"
-import AuthField from "../auth/Auth-field"
-import AuthButton from "../auth/Auth-button"
+import AuthField from "./Auth-field"
+import AuthButton from "./Auth-button"
 import {setTokenAction} from "../../store/authReducer"
 import {useDispatch} from "react-redux"
 

@@ -39,15 +39,16 @@ const Header = () => {
                     >
                         Домашняя
                     </NavLink>
+                    <NavLink to='/contact'
+                             className={({isActive}) => isActive ? "header__link _active" : "header__link"}
+                    >
+                        Связаться
+                    </NavLink>
                     {
                         isAuthenticated
                             ?
                             <>
-                                <NavLink to='/contact'
-                                         className={({isActive}) => isActive ? "header__link _active" : "header__link"}
-                                >
-                                    Связаться
-                                </NavLink>
+
                                 <NavLink to='/cases'
                                          className={({isActive}) => isActive ? "header__link _active" : "header__link"}
                                 >
@@ -60,11 +61,7 @@ const Header = () => {
                                 </NavLink>
                             </>
                             :
-                            <NavLink to='/public/contact'
-                                     className={({isActive}) => isActive ? "header__link _active" : "header__link"}
-                            >
-                                Связаться
-                            </NavLink>
+                            <></>
 
                     }
                 </nav>

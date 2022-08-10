@@ -1,5 +1,5 @@
 import "./contact.sass"
-import Form from "../form/Form"
+import Form from "../../components/form/Form"
 import {useSelector} from "react-redux"
 
 const Contact = () => {

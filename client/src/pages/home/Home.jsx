@@ -1,7 +1,7 @@
 import {useState} from "react";
 import './home.sass'
-import List from "../list/List"
-import PhotosItem from "./Photos-item"
+import List from "../../components/list/List"
+import PhotosItem from "../../components/photos/Photos-item"
 
 
 const Home = () => {

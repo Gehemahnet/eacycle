@@ -1,7 +1,7 @@
 import {useState} from "react"
 import {useHttp} from "../../hooks/http.hook"
-import AuthField from "../auth/Auth-field";
-import AuthButton from "../auth/Auth-button";
+import AuthField from "./Auth-field";
+import AuthButton from "./Auth-button";
 
 const Registration = ({className, chooseLogin, toggleAuth}) => {
     const [form, setForm] = useState(
@@ -78,7 +78,10 @@ const Registration = ({className, chooseLogin, toggleAuth}) => {
                     />
                     <AuthButton
                         type={"submit"}
-                        onClick={register}
+                        onClick={event => {
+                            event.preventDefault()
+                            register()
+                        }}
                         text={"Регистрация"}
                     />
                 </div>

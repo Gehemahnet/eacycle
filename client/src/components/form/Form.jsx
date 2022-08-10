@@ -23,7 +23,7 @@ const Form = ({data}) => {
     const formHandler = e => {
         setForm({...form, [e.target.name]: e.target.value})
     }
-    
+
     const typesOfBicycles = [
         'Городской', 'Дорожный', 'Горный', 'Шоссейный', 'Гибридный', 'BMX', 'Электровелосипед'
     ]

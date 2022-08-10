@@ -2,12 +2,11 @@ import {Routes, Route} from "react-router-dom"
 import {useSelector} from "react-redux"
 import './App.sass'
 import Layout from "../layout/Layout"
-import Home from "../home/Home"
-import Contact from "../contact/Contact"
-import Officers from "../officers/Officers"
-import CaseDetail from "../cases/CaseDetail"
-import Cases from "../cases/Cases"
+import Home from "../../pages/home/Home"
+import Contact from "../../pages/contact/Contact"
+
 import {useRoutes} from "../../router/router";
+import Error from "../../pages/error/Error";
 
 const App = () => {
     const isAuth = useSelector(state => state.isAuth.isAuthenticated)
@@ -18,6 +17,7 @@ const App = () => {
                 <Route index element={<Home/>}/>
                 <Route path='public/contact' element={<Contact/>}/>
                 {isAuth && routes}
+                <Route path='*' element={<Error/>}/>
             </Route>
         </Routes>
     );

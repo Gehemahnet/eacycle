@@ -1,6 +1,6 @@
 import './Auth.sass'
-import Login from "../login/Login"
-import Registration from "../registration/Registration"
+import Login from "./Login"
+import Registration from "./Registration"
 import {useDispatch, useSelector} from "react-redux";
 
 

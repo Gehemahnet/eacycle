@@ -1,8 +1,9 @@
-import {Route, Redirect} from "react-router-dom";
-import Contact from "../components/contact/Contact";
-import Cases from "../components/cases/Cases";
-import CaseDetail from "../components/cases/CaseDetail";
-import Officers from "../components/officers/Officers";
+import {Route} from "react-router-dom";
+import Contact from "../pages/contact/Contact";
+import Cases from "../pages/cases/Cases";
+import CaseDetail from "../pages/cases/CaseDetail";
+import Officers from "../pages/officers/Officers";
+import Profile from "../pages/profile/Profile";
 
 export const useRoutes = isAuth => {
     if (isAuth) {
@@ -12,7 +13,7 @@ export const useRoutes = isAuth => {
                 <Route path='cases' element={<Cases/>}/>
                 <Route path='cases/:id' element={<CaseDetail/>}/>
                 <Route path='officers' element={<Officers/>}/>
-                <Redirect to='/'/>
+                <Route path='profile' element={<Profile/>}/>
                 {/*<Route path='/officers/:id' element={<Officers/>}/>*/
                 }
             </Route>
