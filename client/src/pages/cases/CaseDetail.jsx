@@ -8,20 +8,20 @@ const CaseDetail = () => {
     const token = useSelector(state => state.isAuth.token)
     const [details, setDetails] = useState(null)
     //State of changing possibilities
-    const [changeField, setChangeField] = useState({
-        status: false,
-        licenseNumber: false,
-        type: false,
-        color: false,
-        ownerFullName: false,
-        date: false,
-        description: false,
-        officer: false,
-        resolution: false
-    })
-    const fieldHandler = (e) => {
-        setChangeField({...changeField, [e.target.name]: ![e.target.value]})
-    }
+    // const [changeField, setChangeField] = useState({
+    //     status: false,
+    //     licenseNumber: false,
+    //     type: false,
+    //     color: false,
+    //     ownerFullName: false,
+    //     date: false,
+    //     description: false,
+    //     officer: false,
+    //     resolution: false
+    // })
+    // const fieldHandler = (e) => {
+    //     setChangeField({...changeField, [e.target.name]: ![e.target.value]})
+    // }
 
     const {request} = useHttp()
     const {refactoredObject} = useRefactor()
